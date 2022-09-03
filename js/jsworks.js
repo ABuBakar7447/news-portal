@@ -160,7 +160,14 @@ const togglespinner = isloading =>{
     }
 }
 
-
+const totalDataitem = itemCount =>{
+    const categoryItemDiv = document.getElementById('category-item')
+    if (itemCount == 0){
+        togglespinner(false)
+    }
+    
+    categoryItemDiv.innerText = `${itemCount} items total found`
+}
 
 
 
