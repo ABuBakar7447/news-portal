@@ -43,7 +43,8 @@ const loadNewsDetails = async (id) => {
         const res = await fetch(url);
         const data = await res.json();
         insideNewsDetails(data.data);
-        console.log(data.data)
+        const dataitem = data.data.length;
+        totalDataitem(dataitem);
     }
 
     catch (error) {
@@ -57,7 +58,7 @@ const insideNewsDetails = details => {
     const newsDetails = document.getElementById('newsDetails-container');
 
     newsDetails.innerHTML = '';
-    console.log(details.length);
+    // console.log(details.length);
 
     details.forEach(detail =>{
         
@@ -155,12 +156,11 @@ const togglespinner = isloading =>{
     }
     else{
         
-        loaderSection.innerHTML =`
-        <h1 class="text-center">No Data Found</h1>
-        `
         loaderSection.classList.add('d-none');
     }
 }
+
+
 
 
 
