@@ -24,7 +24,7 @@ const addNews = news => {
         
         newsDiv.innerHTML = `
         
-        <a class="nav-link fw-bold text-dark" href="#" oonclick="loadNewsDetails(${neWs.category_id})">${neWs.category_name}</a>
+        <a class="nav-link fw-bold text-dark" onclick="loadNewsDetails('${neWs.category_id}')">${neWs.category_name}</a>
         
         `;
         newsTopic.appendChild(newsDiv);
@@ -38,7 +38,8 @@ const loadNewsDetails = async (id) => {
         const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data);
+        insideNewsDetails(data.data);
+        // console.log(data.data)
     }
 
     catch (error) {
@@ -46,6 +47,92 @@ const loadNewsDetails = async (id) => {
 
     }
 
+}
+
+const insideNewsDetails = details => {
+    const newsDetails = document.getElementById('newsDetails-container');
+
+    newsDetails.innerHTML = '';
+
+    details.forEach(detail =>{
+        
+        const newsDetailsDiv = document.createElement('div');
+        newsDetailsDiv.classList.add('col-lg-12', 'col-md-12', 'col-sm-12', 'd-lg-flex', 'd-md-flex');
+
+        if(detail.length==0){
+            newsDetailsDiv.innerHTML = `
+            <p class=" h6 fw-semi-bold text-black-50">
+                    Some quick example text to build on the title and make up the bulk of the card
+            </p>
+            `
+        }
+        else{
+            newsDetailsDiv.innerHTML = `
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <img class="w-100 h-100" src="${detail.image_url}" alt="">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 border border-light border-3 rounded px-2 py-4 text-start">
+                <h4>Fundamental Of UI/UX Design</h4>
+                <p class=" h6 fw-semi-bold text-black-50">
+                    Some quick example text to build on the title and make up the bulk of the card
+                </p>
+
+                
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="row">
+                                <div class="col">
+                                    <img class="img-fluid rounded-circle" src="${detail.author.img}" alt="">
+                                </div>
+                                <div class="col">
+                                    <p class"">${detail.author.name}<br>${detail.author.published_date}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row text-center bg-primary">
+                                <div class="col ">
+                                    <i class="fa-regular fa-eye"></i>
+                                
+                                    <p class"">${detail.total_view}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                        
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                    
+            </div>
+        `
+        newsDetails.appendChild(newsDetailsDiv);
+        }
+    });
+    
+    
 }
 
 
