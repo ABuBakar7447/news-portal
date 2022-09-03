@@ -24,7 +24,7 @@ const addNews = news => {
         
         newsDiv.innerHTML = `
         
-        <a class="nav-link fw-bold text-dark" onclick="loadNewsDetails('${neWs.category_id}'); togglespinner(true);">${neWs.category_name}</a>
+        <a class="nav-link fw-bold text-dark" onclick="loadNewsDetails('${neWs.category_id ? neWs.category_id : 'No Data Found'}'); togglespinner(true);">${neWs.category_name ? neWs.category_name : 'No Data Found'}</a>
         `;
         
         
@@ -43,7 +43,7 @@ const loadNewsDetails = async (id) => {
         const res = await fetch(url);
         const data = await res.json();
         insideNewsDetails(data.data);
-        // console.log(data.data)
+        console.log(data.data)
     }
 
     catch (error) {
@@ -57,6 +57,7 @@ const insideNewsDetails = details => {
     const newsDetails = document.getElementById('newsDetails-container');
 
     newsDetails.innerHTML = '';
+    console.log(details.length);
 
     details.forEach(detail =>{
         
@@ -73,28 +74,30 @@ const insideNewsDetails = details => {
         else{
             newsDetailsDiv.innerHTML = `
             <div class="col-lg-4 col-md-4 col-sm-12">
-                <img class="w-100 h-100" src="${detail.image_url}" alt="">
+                <img class="w-100 h-100" src="${detail.thumbnail_url
+                    ? detail.thumbnail_url
+                    : 'No Data Found'}" alt="">
             </div>
             <div class="col-lg-8 col-md-8 col-sm-12 border border-light border-3 rounded px-2 py-4 text-start">
-                <h4>${detail.title}</h4>
+                <h4>${detail.title ? detail.title : 'No Data Found'}</h4>
 
                 <div class="w-100 block-ellipsis >
                     <p class=" h6 fw-semi-bold text-black-50 ">
-                    ${detail.details.slice(0,300)+'...'}
+                    ${detail.details ? detail.details.slice(0,300)+'...' : 'No Data Found'}
                     </p>
                 </div>
                 
 
                 
 
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="row mt-5">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="row">
                                 <div class="col">
-                                    <img class="img-fluid rounded-circle" src="${detail.author.img}" alt="">
+                                    <img class="img-fluid rounded-circle" src="${detail.author ? detail.author.img : 'No Data Found'}" alt="">
                                 </div>
                                 <div class="col">
-                                    <p class"">${detail.author.name}<br>${detail.author.published_date}</p>
+                                    <p class"">${detail.author ? detail.author.name : 'No Data Found'}<br>${detail.author ? detail.author.published_date : 'No Data Found'}</p>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +105,7 @@ const insideNewsDetails = details => {
                             <div class="row text-center">
                                 <div class="col ">
                                     
-                                    <p class""><i class="fa-regular fa-eye"></i><span class"ms-5">${detail.total_view}</span></p>
+                                    <p class""><i class="fa-regular fa-eye"></i><span class"ms-5">${detail.total_view ? detail.total_view : 'No Data Found'}</span></p>
                                 
                                     
                                 </div>
@@ -151,6 +154,10 @@ const togglespinner = isloading =>{
         loaderSection.classList.remove('d-none');
     }
     else{
+        
+        loaderSection.innerHTML =`
+        <h1 class="text-center">No Data Found</h1>
+        `
         loaderSection.classList.add('d-none');
     }
 }
