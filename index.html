@@ -7,6 +7,8 @@
 
     <script src="https://kit.fontawesome.com/2746af3dde.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="styles.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 
     <title>News Hub</title>
@@ -49,7 +51,7 @@
 
     <main class="container">
 
-        <section class="container">
+        <section class="container block-ellipsis">
             <div id="newsTopic-container" class="d-flex flex-wrap justify-content-evenly">
 
               <div>
@@ -60,11 +62,21 @@
             </div>
         </section>
 
+        
+
         <section>
           <div class="container text-center">
             <div id="newsDetails-container" class="row g-3">
             
             </div>
+        </section>
+
+        <section id="loader" class="d-none">
+          <div style="height: 400px;" class="d-flex justify-content-center align-items-center">
+            <div class="spinner-border text-success" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
         </section>
 
     </main>

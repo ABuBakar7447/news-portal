@@ -24,13 +24,17 @@ const addNews = news => {
         
         newsDiv.innerHTML = `
         
-        <a class="nav-link fw-bold text-dark" onclick="loadNewsDetails('${neWs.category_id}')">${neWs.category_name}</a>
-        
+        <a class="nav-link fw-bold text-dark" onclick="loadNewsDetails('${neWs.category_id}'); togglespinner(true);">${neWs.category_name}</a>
         `;
+        
+        
         newsTopic.appendChild(newsDiv);
+        
+        
 
     });
 }
+
 
 const loadNewsDetails = async (id) => {
 
@@ -72,10 +76,14 @@ const insideNewsDetails = details => {
                 <img class="w-100 h-100" src="${detail.image_url}" alt="">
             </div>
             <div class="col-lg-8 col-md-8 col-sm-12 border border-light border-3 rounded px-2 py-4 text-start">
-                <h4>Fundamental Of UI/UX Design</h4>
-                <p class=" h6 fw-semi-bold text-black-50">
-                    Some quick example text to build on the title and make up the bulk of the card
-                </p>
+                <h4>${detail.title}</h4>
+
+                <div class="w-100 block-ellipsis >
+                    <p class=" h6 fw-semi-bold text-black-50 ">
+                    ${detail.details.slice(0,300)+'...'}
+                    </p>
+                </div>
+                
 
                 
 
@@ -90,16 +98,17 @@ const insideNewsDetails = details => {
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="row text-center bg-primary">
+                        <div class="col mt-4">
+                            <div class="row text-center">
                                 <div class="col ">
-                                    <i class="fa-regular fa-eye"></i>
+                                    
+                                    <p class""><i class="fa-regular fa-eye"></i><span class"ms-5">${detail.total_view}</span></p>
                                 
-                                    <p class"">${detail.total_view}</p>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col mt-4">
                             <div class="row">
                                 <div class="col">
 
@@ -113,7 +122,7 @@ const insideNewsDetails = details => {
                                 
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col mt-4">
                             <div class="row">
                                 <div class="col">
                                     <i class="fa-solid fa-arrow-right"></i>
@@ -130,10 +139,22 @@ const insideNewsDetails = details => {
         `
         newsDetails.appendChild(newsDetailsDiv);
         }
+        togglespinner(false)
     });
     
     
 }
+
+const togglespinner = isloading =>{
+    const loaderSection = document.getElementById('loader')
+    if(isloading){
+        loaderSection.classList.remove('d-none');
+    }
+    else{
+        loaderSection.classList.add('d-none');
+    }
+}
+
 
 
 loadNews();
