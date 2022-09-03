@@ -129,7 +129,8 @@ const insideNewsDetails = details => {
                         <div class="col mt-4">
                             <div class="row">
                                 <div class="col">
-                                    <i class="fa-solid fa-arrow-right"></i>
+                                <button onclick="modalData('${detail._id}')" class="border border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right"></i></button>
+                                    
                                 </div>
                                 
                             </div>
@@ -169,6 +170,38 @@ const totalDataitem = itemCount =>{
     categoryItemDiv.innerText = `${itemCount} items total found`
 }
 
+const modalData = async(data0fModal) =>{
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/${data0fModal}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        insideModalDetails(data.data);
+        console.log(data.data)
+        
+    }
+
+    catch (error) {
+        console.log('there is something fishy')
+
+    }
+}
+
+const insideModalDetails = modalDatas =>{
+    
+    const modalTittle = document.getElementById('exampleModalLabel');
+    const modalBody = document.getElementById('modal-data');
+    modalDatas.forEach(modata=>{
+        modalTittle.innerText = modata.title;
+        console.log(modalTittle)
+
+        modalBody.innerHTML = `
+        <img class="img-fluid" src="${modata.image_url ? modata.image_url : 'No Data Found'}" alt="">
+        `
+
+    })
+    
+    
+}
 
 
 loadNews();
