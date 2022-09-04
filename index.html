@@ -24,22 +24,22 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a class="nav-link active bg-primary text-white fw-bold rounded" aria-current="page" href="#">News</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link fw-bold text-primary" href="#">Portal</a>
-                  </li>
+                  </li> -->
                   
                 </ul>
 
                 <div>
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold text-primary" href="#">News</a>
-                      </li>
+                    <li id="news-btn" class="nav-item">
+                      <a class="nav-link active bg-primary text-white fw-bold rounded" aria-current="page" href="#">News</a>
+                    </li>
     
-                      <li class="nav-item">
+                      <li id="blog-btn" class="nav-item">
                         <a class="nav-link fw-bold text-primary" href="#">Blog</a>
                       </li>
                   </ul>
@@ -133,7 +133,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js
     ">
     </script>
-    <script src="js/jsworks.js"></script>
+    <script src="js/jsworks.js"></script>;
+    <script>
+      document.getElementById('news-btn').addEventListener('click', function(){
+          window.location.href = 'index.html';
+      })
+      document.getElementById('blog-btn').addEventListener('click', function(){
+          window.location.href = 'blog.html';
+      })
+    </script>
 </body>
 
 <footer class="mb-lg-0 border-top border-white bg-dark w-100 py-4" id="footer">

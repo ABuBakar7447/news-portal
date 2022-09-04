@@ -24,7 +24,7 @@ const addNews = news => {
         
         newsDiv.innerHTML = `
         
-        <a class="nav-link fw-bold text-dark" onclick="loadNewsDetails('${neWs.category_id ? neWs.category_id : 'No Data Found'}'); togglespinner(true);">${neWs.category_name ? neWs.category_name : 'No Data Found'}</a>
+        <a class="nav-link fw-bold text-dark hober" onclick="loadNewsDetails('${neWs.category_id ? neWs.category_id : 'No Data Found'}'); togglespinner(true);">${neWs.category_name ? neWs.category_name : 'No Data Found'}</a>
         `;
         
         

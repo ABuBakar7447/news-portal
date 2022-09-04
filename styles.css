@@ -1,0 +1,9 @@
+.hober{
+    color:black;
+    font-weight: bold;
+}
+.hober:hover{
+    background-color: gray; 
+    border: 1px solid black;
+    
+}
