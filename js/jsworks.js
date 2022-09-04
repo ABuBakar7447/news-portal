@@ -10,7 +10,7 @@ const loadNews = async () => {
     }
 
     catch (error) {
-        console.log('there is something fishy')
+        console.log(error)
 
     }
 
@@ -65,14 +65,7 @@ const insideNewsDetails = details => {
         const newsDetailsDiv = document.createElement('div');
         newsDetailsDiv.classList.add('col-lg-12', 'col-md-12', 'col-sm-12', 'd-lg-flex', 'd-md-flex');
 
-        if(detail.length==0){
-            newsDetailsDiv.innerHTML = `
-            <p class=" h6 fw-semi-bold text-black-50">
-                    Some quick example text to build on the title and make up the bulk of the card
-            </p>
-            `
-        }
-        else{
+        
             newsDetailsDiv.innerHTML = `
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <img class="w-100 h-100" src="${detail.thumbnail_url
@@ -143,7 +136,7 @@ const insideNewsDetails = details => {
             </div>
         `
         newsDetails.appendChild(newsDetailsDiv);
-        }
+        
         togglespinner(false)
     });
     
@@ -181,7 +174,7 @@ const modalData = async(data0fModal) =>{
     }
 
     catch (error) {
-        console.log('there is something fishy')
+        console.log(error)
 
     }
 }
@@ -209,3 +202,4 @@ const insideModalDetails = modalDatas =>{
 
 
 loadNews();
+loadNewsDetails('01')
