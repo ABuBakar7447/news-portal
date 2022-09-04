@@ -196,6 +196,10 @@ const insideModalDetails = modalDatas =>{
 
         modalBody.innerHTML = `
         <img class="img-fluid" src="${modata.image_url ? modata.image_url : 'No Data Found'}" alt="">
+        <p class="">Author Name : ${modata.author ? modata.author.name : 'No author name found' }</p>
+        <p class="">Published : ${modata.author ? modata.author.published_date : 'No publish date found'}</p>
+        <p class="">Rating : ${modata.rating ? modata.rating.number : 'No rating found'}, Badge : ${modata.rating ? modata.rating.badge : 'No badge found'}</p>
+        <p class="">Total View : ${modata.total_view ? modata.total_view : 'No view found'}</p>
         `
 
     })
