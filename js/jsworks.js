@@ -169,7 +169,7 @@ const modalData = async(data0fModal) =>{
         const res = await fetch(url);
         const data = await res.json();
         insideModalDetails(data.data);
-        console.log(data.data)
+        
         
     }
 
@@ -185,7 +185,6 @@ const insideModalDetails = modalDatas =>{
     const modalBody = document.getElementById('modal-data');
     modalDatas.forEach(modata=>{
         modalTittle.innerText = modata.title;
-        console.log(modalTittle)
 
         modalBody.innerHTML = `
         <img class="img-fluid" src="${modata.image_url ? modata.image_url : 'No Data Found'}" alt="">
